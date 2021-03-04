@@ -29,4 +29,19 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
+  def User.search(search, search_category, search_type)
+    if search_category == "1"
+      if search_type == "1"
+        User.where(["name LIKE ?", "#{search}"])
+      elsif search_type == "2"
+        User.where(["name LIKE ?", "#{search}%"])
+      elsif search_type == "3"
+        User.where(["name LIKE ?", "%#{search}"])
+      elsif search_type == "4"
+        User.where(["name LIKE ?", "%#{search}%"])
+      else
+        User.all
+      end
+    end
+  end
 end
