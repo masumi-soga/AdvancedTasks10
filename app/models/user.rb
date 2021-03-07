@@ -16,6 +16,22 @@ class User < ApplicationRecord
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
+  
+  # JpPrefectureGemについての記述
+  # 都道府県コード、都道府県名が参照できるようになる
+  include JpPrefecture
+  
+  jp_prefecture :prefecture_code
+  
+  def prefecture_name
+    JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)
+  end
+  
+  def prefecture_name=(prefecture_name)
+    self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
+  end
+  
+  # ここまで
 
   def follow(user_id)
     follower.create(followed_id: user_id)
