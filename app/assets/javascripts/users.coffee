@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
+
+$(document).on "turbolinks:load", ->
   $("#address_zipcode").jpostal({
     # 郵便番号の入力欄が一つの場合
     # 111-1111と1111111のどちらの入力形式でも住所を自動入力してくれる
