@@ -7,7 +7,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     user_name = params[:user][:name]
-    ThanksMailer.registration_confirmation(user_name).deliver unless resource.invalid?
+    user_email = params[:user][:email]
+    ThanksMailer.registration_confirmation(user_name,user_email).deliver unless resource.invalid?
   end
 
   def new

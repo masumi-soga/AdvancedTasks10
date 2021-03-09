@@ -5,11 +5,11 @@ class ThanksMailer < ApplicationMailer
   #
   #   en.thanks_mailer.registration_confirmation.subject
   #
-  def registration_confirmation(user_name)
+  def registration_confirmation(user_name,user_email)
     @user_name = user_name
     mail(
       subject: "会員登録が完了しました",
-      to: "sogappi@gmail.com"
+      to: user_email
       )
 
     # mail to: "sogappi@gmail.com"

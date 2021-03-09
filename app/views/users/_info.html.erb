@@ -36,4 +36,5 @@
   <% else %>
   <%= link_to 'フォローする',follow_path(user.id),method: :create,class: "btn btn-success" %>
   <% end %>
+  <%= link_to "chatを始める", chat_path(user.id) %>
 <% end %>
