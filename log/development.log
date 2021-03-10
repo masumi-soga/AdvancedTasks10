@@ -22847,3 +22847,1186 @@ Processing by ChatsController#show as HTML
 Completed 200 OK in 141ms (Views: 130.4ms | ActiveRecord: 0.6ms)
 
 
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "book_comments"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "book_comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "book_id" integer, "comment" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "books"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "chats"[0m
+  ↳ db/schema.rb:31
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "chats" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "room_id" integer, "message" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:31
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "book_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "relationships"[0m
+  ↳ db/schema.rb:46
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "relationships" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "followed_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:46
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "rooms"[0m
+  ↳ db/schema.rb:53
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:53
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "searches"[0m
+  ↳ db/schema.rb:58
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "searches" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_search" varchar, "user_search" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:58
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "user_rooms"[0m
+  ↳ db/schema.rb:65
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "user_rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "room_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:65
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:72
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "name" varchar, "introduction" text, "profile_image_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "prefecture_code" varchar, "postal_code" varchar, "city" varchar, "street" varchar)[0m
+  ↳ db/schema.rb:72
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  ↳ db/schema.rb:72
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  ↳ db/schema.rb:72
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (5.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210309004643)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200830060820),
+(20200830062142),
+(20200913111744),
+(20200913112406),
+(20210303023839),
+(20210304024907),
+(20210307060915),
+(20210309004515),
+(20210309004613);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (3.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-09 03:37:59.887553"], ["updated_at", "2021-03-09 03:37:59.887553"]]
+  ↳ db/schema.rb:13
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "book_comments"[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "book_comments" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "book_id" integer, "comment" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:15
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "books"[0m
+  ↳ db/schema.rb:23
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "books" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:23
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "chats"[0m
+  ↳ db/schema.rb:31
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "chats" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "room_id" integer, "message" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:31
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "favorites"[0m
+  ↳ db/schema.rb:39
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "book_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:39
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "relationships"[0m
+  ↳ db/schema.rb:46
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "relationships" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "followed_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:46
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "rooms"[0m
+  ↳ db/schema.rb:53
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:53
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "searches"[0m
+  ↳ db/schema.rb:58
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "searches" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "book_search" varchar, "user_search" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:58
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "user_rooms"[0m
+  ↳ db/schema.rb:65
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "user_rooms" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "room_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:65
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  ↳ db/schema.rb:72
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "name" varchar, "introduction" text, "profile_image_id" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "prefecture_code" varchar, "postal_code" varchar, "city" varchar, "street" varchar)[0m
+  ↳ db/schema.rb:72
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  ↳ db/schema.rb:72
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  ↳ db/schema.rb:72
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ db/schema.rb:13
+  [1m[35m (6.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210309004643)[0m
+  ↳ db/schema.rb:13
+  [1m[35m (4.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200830060820),
+(20200830062142),
+(20200913111744),
+(20200913112406),
+(20210303023839),
+(20210304024907),
+(20210307060915),
+(20210309004515),
+(20210309004613);
+
+[0m
+  ↳ db/schema.rb:13
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ db/schema.rb:13
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-09 03:37:59.992581"], ["updated_at", "2021-03-09 03:37:59.992581"]]
+  ↳ db/schema.rb:13
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/schema.rb:13
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Update (4.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-03-09 03:37:59.999633"], ["key", "environment"]]
+  ↳ bin/rails:9
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 118.83.206.48 at 2021-03-09 03:38:10 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by HomesController#top as HTML
+  Rendering homes/top.html.erb within layouts/application
+  Rendered homes/top.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/layouts/_header.html.erb:10
+  Rendered layouts/_header.html.erb (13.0ms)
+  Rendered layouts/_footer.html.erb (0.3ms)
+Completed 200 OK in 869ms (Views: 861.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users/sign_in" for 118.83.206.48 at 2021-03-09 03:38:13 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (12.6ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 220ms (Views: 206.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for 118.83.206.48 at 2021-03-09 03:38:17 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wjDcyVe9xhI5vjsVfrD0mYu+Umc1ANxY93ASmzLbOJk5694eEu25HFwXhty/QlVvV34/QIUeEdsqQZJQw83wJA==", "user"=>{"name"=>"soga", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."name" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["name", "soga"], ["LIMIT", 1]]
+  ↳ app/controllers/users/sessions_controller.rb:8
+Completed 401 Unauthorized in 5ms (ActiveRecord: 0.4ms)
+
+
+Processing by Users::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wjDcyVe9xhI5vjsVfrD0mYu+Umc1ANxY93ASmzLbOJk5694eEu25HFwXhty/QlVvV34/QIUeEdsqQZJQw83wJA==", "user"=>{"name"=>"soga", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (0.9ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_header.html.erb (1.0ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 438ms (Views: 121.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 118.83.206.48 at 2021-03-09 03:38:19 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.5ms)
+  Rendered devise/shared/_links.html.erb (0.9ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (10.0ms)
+  Rendered layouts/_header.html.erb (1.2ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 125ms (Views: 123.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 118.83.206.48 at 2021-03-09 03:38:34 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"TPT5aoRP9TePEMmom7pWJPhxZYTlsSYxsgnsi1bl7PHGmPBBmV7QvohJLH/CUQzKb6sJnoRywcsQHJH0gkGppA==", "user"=>{"name"=>"soga", "email"=>"sogappi@gmail.com", "postal_code"=>"1440055", "prefecture_code"=>"東京都", "city"=>"大田区仲六郷", "street"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sogappi@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "soga"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[36mUser Create (4.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "name", "created_at", "updated_at", "prefecture_code", "postal_code", "city", "street") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "sogappi@gmail.com"], ["encrypted_password", "$2a$12$2ecjnzLoVU.0sg7fWDnZ5esp/yJTp9dFfw3XTYSJVxStKRuR.pJze"], ["name", "soga"], ["created_at", "2021-03-09 03:38:34.681569"], ["updated_at", "2021-03-09 03:38:34.681569"], ["prefecture_code", "東京都"], ["postal_code", "1440055"], ["city", "大田区仲六郷"], ["street", ""]]
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[35m (4.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:8
+Redirected to https://ec37681ed0214ad990f0b6c5877a2db3.vfs.cloud9.ap-northeast-1.amazonaws.com/users/1
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "soga"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:11
+  Rendering thanks_mailer/registration_confirmation.html.erb within layouts/mailer
+  Rendered thanks_mailer/registration_confirmation.html.erb within layouts/mailer (0.4ms)
+  Rendering thanks_mailer/registration_confirmation.text.erb within layouts/mailer
+  Rendered thanks_mailer/registration_confirmation.text.erb within layouts/mailer (0.3ms)
+ThanksMailer#registration_confirmation: processed outbound mail in 60.0ms
+Sent mail to sogappi@gmail.com (2999.3ms)
+Date: Tue, 09 Mar 2021 03:38:34 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <6046edbada61a_643d2d0b25c725d2@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: =?UTF-8?Q?=E4=BC=9A=E5=93=A1=E7=99=BB=E9=8C=B2=E3=81=8C=E5=AE=8C=E4=BA=86=E3=81=97=E3=81=BE=E3=81=97=E3=81=9F?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_6046edbad8e95_643d2d0b25c724cd";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_6046edbad8e95_643d2d0b25c724cd
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Thanks#registration_confirmation
+
+, find me in app/views/thanks_mailer/registration_confirmation.text.erb
+
+
+----==_mimepart_6046edbad8e95_643d2d0b25c724cd
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    =0D
+<p>=0D
+  soga =E6=A7=98, =E4=BC=9A=E5=93=A1=E7=99=BB=E9=8C=B2=E3=81=8C=E5=AE=8C=E4=
+=BA=86=E3=81=97=E3=81=BE=E3=81=97=E3=81=9F=E3=80=82=0D
+</p>=0D
+=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_6046edbad8e95_643d2d0b25c724cd--
+
+Completed 302 Found in 3525ms (ActiveRecord: 9.6ms)
+
+
+Started GET "/users/1" for 118.83.206.48 at 2021-03-09 03:38:37 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/users/_info.html.erb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/users/_info.html.erb:23
+  Rendered users/_info.html.erb (14.1ms)
+  Rendered books/_form.html.erb (3.4ms)
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/views/books/_index.html.erb:11
+  Rendered books/_index.html.erb (3.0ms)
+  Rendered users/show.html.erb within layouts/application (24.4ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 164ms (Views: 124.1ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/users/sign_out" for 118.83.206.48 at 2021-03-09 03:38:44 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"55uBKmyCFsRNnT8w0oxHP/RXBWUqJdT6l4z+4NI0zUf+KSVUHAnsH5U/RJ4JEXIdS08hEX1vq6WZqYjHM2faRQ=="}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:12
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/sessions_controller.rb:12
+Redirected to https://ec37681ed0214ad990f0b6c5877a2db3.vfs.cloud9.ap-northeast-1.amazonaws.com/
+Completed 302 Found in 11ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 118.83.206.48 at 2021-03-09 03:38:44 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by HomesController#top as HTML
+  Rendering homes/top.html.erb within layouts/application
+  Rendered homes/top.html.erb within layouts/application (0.8ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 109ms (Views: 108.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_up" for 118.83.206.48 at 2021-03-09 03:38:46 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (0.5ms)
+  Rendered devise/shared/_links.html.erb (0.7ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (7.4ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 112ms (Views: 111.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 118.83.206.48 at 2021-03-09 03:39:01 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"v/T+m+S86zg6a6UFCA72HBNnEXfRazuo2iMt0dVuSIpmQlgMrSKlY39hag11YMlfKOrSpk3DYQj5X3h7v/xR8w==", "user"=>{"name"=>"test", "email"=>"sg.kse777@gmail.com", "postal_code"=>"1440055", "prefecture_code"=>"東京都", "city"=>"大田区仲六郷", "street"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sg.kse777@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = ? LIMIT ?[0m  [["name", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[36mUser Create (3.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "name", "created_at", "updated_at", "prefecture_code", "postal_code", "city", "street") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "sg.kse777@gmail.com"], ["encrypted_password", "$2a$12$T.LhBWhsAFW1eVoxKrtv1u5gnAz5YQPAnsJLotrhhGmKPSpnCy1V."], ["name", "test"], ["created_at", "2021-03-09 03:39:02.032718"], ["updated_at", "2021-03-09 03:39:02.032718"], ["prefecture_code", "東京都"], ["postal_code", "1440055"], ["city", "大田区仲六郷"], ["street", ""]]
+  ↳ app/controllers/users/registrations_controller.rb:8
+  [1m[35m (4.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:8
+Redirected to https://ec37681ed0214ad990f0b6c5877a2db3.vfs.cloud9.ap-northeast-1.amazonaws.com/users/2
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = ? AND "users"."id" != ? LIMIT ?[0m  [["name", "test"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:11
+  Rendering thanks_mailer/registration_confirmation.html.erb within layouts/mailer
+  Rendered thanks_mailer/registration_confirmation.html.erb within layouts/mailer (0.4ms)
+  Rendering thanks_mailer/registration_confirmation.text.erb within layouts/mailer
+  Rendered thanks_mailer/registration_confirmation.text.erb within layouts/mailer (0.3ms)
+ThanksMailer#registration_confirmation: processed outbound mail in 17.1ms
+Sent mail to sg.kse777@gmail.com (2615.7ms)
+Date: Tue, 09 Mar 2021 03:39:02 +0000
+From: from@example.com
+To: sg.kse777@gmail.com
+Message-ID: <6046edd6166fd_643d2d0b25c7276d@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: =?UTF-8?Q?=E4=BC=9A=E5=93=A1=E7=99=BB=E9=8C=B2=E3=81=8C=E5=AE=8C=E4=BA=86=E3=81=97=E3=81=BE=E3=81=97=E3=81=9F?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_6046edd6159fc_643d2d0b25c726b8";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_6046edd6159fc_643d2d0b25c726b8
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Thanks#registration_confirmation
+
+, find me in app/views/thanks_mailer/registration_confirmation.text.erb
+
+
+----==_mimepart_6046edd6159fc_643d2d0b25c726b8
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    =0D
+<p>=0D
+  test =E6=A7=98, =E4=BC=9A=E5=93=A1=E7=99=BB=E9=8C=B2=E3=81=8C=E5=AE=8C=E4=
+=BA=86=E3=81=97=E3=81=BE=E3=81=97=E3=81=9F=E3=80=82=0D
+</p>=0D
+=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_6046edd6159fc_643d2d0b25c726b8--
+
+Completed 302 Found in 2985ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/users/2" for 118.83.206.48 at 2021-03-09 03:39:04 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 2]]
+  ↳ app/views/users/_info.html.erb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 2]]
+  ↳ app/views/users/_info.html.erb:23
+  Rendered users/_info.html.erb (7.7ms)
+  Rendered books/_form.html.erb (1.7ms)
+  [1m[36mBook Load (0.1ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/books/_index.html.erb:11
+  Rendered books/_index.html.erb (2.6ms)
+  Rendered users/show.html.erb within layouts/application (16.4ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 136ms (Views: 129.7ms | ActiveRecord: 0.6ms)
+
+
+UsersMailer#notify_user: processed outbound mail in 4.5ms
+UsersMailer#notify_user: processed outbound mail in 4.3ms
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "users"."email" FROM "users"[0m
+UsersMailer#notify_user: processed outbound mail in 7.2ms
+UsersMailer#notify_user: processed outbound mail in 7.2ms
+UsersMailer#notify_user: processed outbound mail in 3.0ms
+UsersMailer#notify_user: processed outbound mail in 0.4ms
+UsersMailer#notify_user: processed outbound mail in 3.4ms
+UsersMailer#notify_user: processed outbound mail in 0.5ms
+UsersMailer#notify_user: processed outbound mail in 3.5ms
+UsersMailer#notify_user: processed outbound mail in 0.4ms
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+UsersMailer#notify_user: processed outbound mail in 5.8ms
+UsersMailer#notify_user: processed outbound mail in 4.0ms
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (1.2ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 82.1ms
+Sent mail to sogappi@gmail.com (2807.5ms)
+Date: Tue, 09 Mar 2021 09:50:53 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <604744fd33b04_4d58f9f998946f9@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_604744fd3201d_4d58f9f998945d0";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_604744fd3201d_4d58f9f998945d0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_604744fd3201d_4d58f9f998945d0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_604744fd3201d_4d58f9f998945d0--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.0ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.0ms)
+UsersMailer#notify_user: processed outbound mail in 10.9ms
+Sent mail to sogappi@gmail.com (2641.8ms)
+Date: Tue, 09 Mar 2021 09:51:29 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <604745215d4a8_4d58f9f998948f9@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_604745215c64d_4d58f9f998947fa";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_604745215c64d_4d58f9f998947fa
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_604745215c64d_4d58f9f998947fa
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_604745215c64d_4d58f9f998947fa--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.0ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.0ms)
+UsersMailer#notify_user: processed outbound mail in 10.0ms
+Sent mail to sogappi@gmail.com (2548.7ms)
+Date: Tue, 09 Mar 2021 09:53:40 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <604745a49c7a3_4d58f9f99895029@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_604745a49bc1e_4d58f9f9989491f";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_604745a49bc1e_4d58f9f9989491f
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_604745a49bc1e_4d58f9f9989491f
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_604745a49bc1e_4d58f9f9989491f--
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.5ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.3ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.3ms)
+UsersMailer#notify_user: processed outbound mail in 73.1ms
+Sent mail to sg.kse777@gmail.com (3119.2ms)
+Date: Tue, 09 Mar 2021 10:00:49 +0000
+From: from@example.com
+To: sg.kse777@gmail.com
+Message-ID: <60474751bde8e_60d0f9f998616e6@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60474751bd12a_60d0f9f998615f2
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60474751bd12a_60d0f9f998615f2
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60474751bd12a_60d0f9f998615f2
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60474751bd12a_60d0f9f998615f2--
+
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.0ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.0ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.0ms)
+UsersMailer#notify_user: processed outbound mail in 16.8ms
+Sent mail to sg.kse777@gmail.com (2759.9ms)
+Date: Tue, 09 Mar 2021 10:02:43 +0000
+From: from@example.com
+To: sg.kse777@gmail.com
+Message-ID: <604747c321fc6_60d0f9f9986198@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_604747c321320_60d0f9f998618f0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_604747c321320_60d0f9f998618f0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_604747c321320_60d0f9f998618f0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_604747c321320_60d0f9f998618f0--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.6ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 28.5ms
+Sent mail to #<Proc:0x0000000005424960@/home/ec2-user/environment/AdvancedTasks8/app/mailers/users_mailer.rb:5 (lambda)> (1595.8ms)
+Date: Tue, 09 Mar 2021 10:03:58 +0000
+From: from@example.com
+To: #<Proc:0x0000000005424960@/home/ec2-user/environment/AdvancedTasks8/app/mailers/users_mailer.rb:5
+ (lambda)>
+Message-ID: <6047480ebc7c3_626bf9f998748f@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_6047480ebb5d3_626bf9f998747b1";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_6047480ebb5d3_626bf9f998747b1
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_6047480ebb5d3_626bf9f998747b1
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_6047480ebb5d3_626bf9f998747b1--
+
+Started GET "/users/2" for 118.83.206.48 at 2021-03-09 10:05:27 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:6
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 2]]
+  ↳ app/views/users/_info.html.erb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 2]]
+  ↳ app/views/users/_info.html.erb:23
+  Rendered users/_info.html.erb (398.6ms)
+  Rendered books/_form.html.erb (27.0ms)
+  [1m[36mBook Load (0.2ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/views/books/_index.html.erb:11
+  Rendered books/_index.html.erb (2.0ms)
+  Rendered users/show.html.erb within layouts/application (434.1ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 802ms (Views: 741.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/users" for 118.83.206.48 at 2021-03-09 10:05:29 +0000
+Cannot render console from 118.83.206.48! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  Rendering users/index.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 2]]
+  ↳ app/views/users/_info.html.erb:15
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 2]]
+  ↳ app/views/users/_info.html.erb:23
+  Rendered users/_info.html.erb (12.1ms)
+  Rendered books/_form.html.erb (1.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/views/users/_index.html.erb:10
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 1]]
+  ↳ app/views/users/_index.html.erb:14
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 1]]
+  ↳ app/views/users/_index.html.erb:16
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = ? AND "users"."id" = ? LIMIT ?[0m  [["follower_id", 2], ["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:47
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."follower_id" = ?[0m  [["follower_id", 2]]
+  ↳ app/views/users/_index.html.erb:14
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "relationships" WHERE "relationships"."followed_id" = ?[0m  [["followed_id", 2]]
+  ↳ app/views/users/_index.html.erb:16
+  Rendered users/_index.html.erb (26.0ms)
+  Rendered users/index.html.erb within layouts/application (44.9ms)
+  Rendered layouts/_header.html.erb (1.4ms)
+  Rendered layouts/_footer.html.erb (0.2ms)
+Completed 200 OK in 163ms (Views: 157.1ms | ActiveRecord: 0.9ms)
+
+
+UsersMailer#notify_user: processed outbound mail in 7.4ms
+UsersMailer#notify_user: processed outbound mail in 4.5ms
+UsersMailer#notify_user: processed outbound mail in 4.7ms
+UsersMailer#notify_user: processed outbound mail in 4.3ms
+UsersMailer#notify_user: processed outbound mail in 4.7ms
+UsersMailer#notify_user: processed outbound mail in 4.5ms
+UsersMailer#notify_user: processed outbound mail in 4.9ms
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.6ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 28.5ms
+Sent mail to sogappi@gmail.com (2546.2ms)
+Date: Tue, 09 Mar 2021 10:14:06 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <60474a6ea7a82_69dec1b9ac474cf@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_60474a6ea69f9_69dec1b9ac47383";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60474a6ea69f9_69dec1b9ac47383
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60474a6ea69f9_69dec1b9ac47383
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60474a6ea69f9_69dec1b9ac47383--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (1.6ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 93.9ms
+Sent mail to sogappi@gmail.com (2843.6ms)
+Date: Wed, 10 Mar 2021 01:27:02 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <60482066d965_19e56399a8530d3@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_60482066a895_19e56399a85294";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60482066a895_19e56399a85294
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60482066a895_19e56399a85294
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60482066a895_19e56399a85294--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (9.5ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 122.2ms
+Sent mail to sogappi@gmail.com (3310.3ms)
+Date: Wed, 10 Mar 2021 02:14:50 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <60482b9a43da4_3df0c479944173e@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: everyday send your mail
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_60482b9a41122_3df0c47994416f5";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60482b9a41122_3df0c47994416f5
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60482b9a41122_3df0c47994416f5
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60482b9a41122_3df0c47994416f5--
+
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.6ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 30.0ms
+Sent mail to sogappi@gmail.com (2687.7ms)
+Date: Wed, 10 Mar 2021 02:28:41 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <60482ed977681_4d6677d990173a2@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: =?UTF-8?Q?=E5=AE=9A=E6=9C=9F?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_60482ed9765f0_4d6677d9901727b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60482ed9765f0_4d6677d9901727b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60482ed9765f0_4d6677d9901727b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60482ed9765f0_4d6677d9901727b--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.0ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.0ms)
+UsersMailer#notify_user: processed outbound mail in 12.0ms
+Sent mail to sg.kse777@gmail.com (3080.4ms)
+Date: Wed, 10 Mar 2021 02:28:44 +0000
+From: from@example.com
+To: sg.kse777@gmail.com
+Message-ID: <60482edc2ea3b_4d6677d99017553@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: =?UTF-8?Q?=E5=AE=9A=E6=9C=9F?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_60482edc2db43_4d6677d99017468";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60482edc2db43_4d6677d99017468
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60482edc2db43_4d6677d99017468
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60482edc2db43_4d6677d99017468--
+
+UsersMailer#daily: processed outbound mail in 5849.6ms
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/mailers/users_mailer.rb:10
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.5ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.2ms)
+UsersMailer#notify_user: processed outbound mail in 25.6ms
+Sent mail to sogappi@gmail.com (3095.8ms)
+Date: Wed, 10 Mar 2021 02:40:03 +0000
+From: from@example.com
+To: sogappi@gmail.com
+Message-ID: <604831836f5a8_5b7dce99b0299c0@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: =?UTF-8?Q?=E5=AE=9A=E6=9C=9F?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_604831836e6d4_5b7dce99b02984d";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_604831836e6d4_5b7dce99b02984d
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_604831836e6d4_5b7dce99b02984d
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_604831836e6d4_5b7dce99b02984d--
+
+  Rendering users_mailer/notify_user.html.erb within layouts/mailer
+  Rendered users_mailer/notify_user.html.erb within layouts/mailer (0.0ms)
+  Rendering users_mailer/notify_user.text.erb within layouts/mailer
+  Rendered users_mailer/notify_user.text.erb within layouts/mailer (0.0ms)
+UsersMailer#notify_user: processed outbound mail in 9.3ms
+Sent mail to sg.kse777@gmail.com (2575.2ms)
+Date: Wed, 10 Mar 2021 02:40:06 +0000
+From: from@example.com
+To: sg.kse777@gmail.com
+Message-ID: <6048318689c3f_5b7dce99b030172@ip-172-31-44-160.ap-northeast-1.compute.internal.mail>
+Subject: =?UTF-8?Q?=E5=AE=9A=E6=9C=9F?=
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_60483186890d8_5b7dce99b030073";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_60483186890d8_5b7dce99b030073
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: base64
+
+VEVYVOODoeODvOODq+mAgeS/oQ0K
+
+----==_mimepart_60483186890d8_5b7dce99b030073
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html>=0D
+<html>=0D
+  <head>=0D
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf=
+-8" />=0D
+    <style>=0D
+      /* Email styles need to be inline */=0D
+    </style>=0D
+  </head>=0D
+=0D
+  <body>=0D
+    HTML=E3=83=A1=E3=83=BC=E3=83=AB=E9=80=81=E4=BF=A1=0D
+  </body>=0D
+</html>=0D
+
+----==_mimepart_60483186890d8_5b7dce99b030073--
+
+UsersMailer#daily: processed outbound mail in 5732.3ms

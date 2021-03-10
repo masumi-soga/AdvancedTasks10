@@ -1,0 +1,40 @@
+rake aborted!
+Don't know how to build task 'send_mail:send_mails' (See the list of available tasks with `rake --tasks`)
+Did you mean?  send_mail:send_mail
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/rake-13.0.1/exe/rake:27:in `<top (required)>'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `<main>'
+(See full trace by running task with --trace)
+rake aborted!
+SyntaxError: /home/ec2-user/environment/AdvancedTasks8/app/mailers/users_mailer.rb:5: syntax error, unexpected tIVAR, expecting end
+    mail:to @user.email, subject:"定期"
+            ^~~~~
+/home/ec2-user/environment/AdvancedTasks8/app/mailers/users_mailer.rb:5: syntax error, unexpected tLABEL, expecting '='
+...  mail:to @user.email, subject:"定期"
+...                       ^~~~~~~~
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:59:in `load'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/kernel_require.rb:59:in `load'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:476:in `block in load_file'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:661:in `new_constants_in'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:475:in `load_file'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:373:in `block in require_or_load'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:37:in `block in load_interlock'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies/interlock.rb:14:in `block in loading'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/concurrency/share_lock.rb:151:in `exclusive'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies/interlock.rb:13:in `loading'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:37:in `load_interlock'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:356:in `require_or_load'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/active_support.rb:49:in `block in require_or_load'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/active_support.rb:17:in `allow_bootsnap_retry'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/active_support.rb:48:in `require_or_load'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:510:in `load_missing_constant'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/active_support.rb:61:in `block in load_missing_constant'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/active_support.rb:17:in `allow_bootsnap_retry'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/bootsnap-1.4.8/lib/bootsnap/load_path_cache/core_ext/active_support.rb:60:in `load_missing_constant'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/activesupport-5.2.4.3/lib/active_support/dependencies.rb:195:in `const_missing'
+/home/ec2-user/environment/AdvancedTasks8/lib/tasks/send_mail.rake:4:in `block (2 levels) in <main>'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/gems/rake-13.0.1/exe/rake:27:in `<top (required)>'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `eval'
+/home/ec2-user/.rvm/gems/ruby-2.6.3/bin/ruby_executable_hooks:24:in `<main>'
+Tasks: TOP => send_mail:send_mail
+(See full trace by running task with --trace)
